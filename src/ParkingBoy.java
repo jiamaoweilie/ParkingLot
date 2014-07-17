@@ -3,18 +3,17 @@ import com.google.common.base.Optional;
 import java.util.List;
 
 public class ParkingBoy {
+    private final Chooser chooser;
     protected List<ParkingLot> parkingLotList;
 
-    public ParkingBoy(List<ParkingLot> parkingLotList) {
+    public ParkingBoy(List<ParkingLot> parkingLotList, Chooser chooser1) {
         this.parkingLotList = parkingLotList;
+        chooser = chooser1;
     }
 
     public Optional<Ticket> park(Car car) {
-        for(ParkingLot lot : parkingLotList){
-            if(lot.getSpaceNum()>0)
-                return lot.parking(car);
-        }
-        return Optional.absent();
+        ParkingLot result = chooser.chooseLot(parkingLotList);
+        return result.parking(car);
     }
 
     public Optional<Car> unPark(Optional<Ticket> ticket) {
@@ -24,4 +23,5 @@ public class ParkingBoy {
         }
         return Optional.absent();
     }
+
 }

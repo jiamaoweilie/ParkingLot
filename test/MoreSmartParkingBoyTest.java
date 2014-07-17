@@ -9,7 +9,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class MoreSmartParkingBoyTest {
-    MoreSmartParkingBoy moreSmartParkingBoy;
+    ParkingBoy parkingBoy;
     ParkingLot lot1;
     ParkingLot lot2;
     List<ParkingLot> parkingLotList;
@@ -21,7 +21,7 @@ public class MoreSmartParkingBoyTest {
         parkingLotList = new ArrayList<ParkingLot>();
         parkingLotList.add(lot1);
         parkingLotList.add(lot2);
-        moreSmartParkingBoy = new MoreSmartParkingBoy(parkingLotList);
+        parkingBoy = new ParkingBoy(parkingLotList, new MoreSmartChooser());
         car = new Car("12345");
     }
 
@@ -29,14 +29,14 @@ public class MoreSmartParkingBoyTest {
     public void shouldParking() {
         lot1.setSpaceNum(6);
         lot2.setSpaceNum(6);
-        Optional<Ticket> ticket = moreSmartParkingBoy.park(car);
+        Optional<Ticket> ticket = parkingBoy.park(car);
         assertThat(ticket,is(Optional.of(new Ticket("12345",2))));
     }
 
     @Test
     public void shouldUnParking() {
-        Optional<Ticket> ticket = moreSmartParkingBoy.park(car);
-        Optional<Car> carResult = moreSmartParkingBoy.unPark(ticket);
+        Optional<Ticket> ticket = parkingBoy.park(car);
+        Optional<Car> carResult = parkingBoy.unPark(ticket);
         assertThat(carResult, is(Optional.of(car)));
     }
 }

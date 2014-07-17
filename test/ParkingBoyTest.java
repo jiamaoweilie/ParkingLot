@@ -21,7 +21,7 @@ public class ParkingBoyTest {
         lot2 = new ParkingLot(2, 50);
         parkingLotList.add(lot1);
         parkingLotList.add(lot2);
-        parkingBoy = new ParkingBoy(parkingLotList);
+        parkingBoy = new ParkingBoy(parkingLotList, new NormalChooser());
     }
 
     @Test
