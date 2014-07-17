@@ -1,9 +1,9 @@
+import com.google.common.base.Optional;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class ParkingLotTest {
     ParkingLot parkingLot;
@@ -17,14 +17,14 @@ public class ParkingLotTest {
 
     @Test
     public void shouldParking() {
-        Ticket ticket = parkingLot.parking(new Car("12345"));
+        Optional<Ticket> ticket = parkingLot.parking(new Car("12345"));
         assertNotNull(ticket);
     }
 
     @Test
     public void shouldParkingWhenParkingLotIsNotFull() {
-        Ticket ticket = parkingLot.parking(new Car("12345"));
-        assertThat(ticket, is(new Ticket("12345", 1)));
+        Optional<Ticket> ticket = parkingLot.parking(new Car("12345"));
+        assertThat(ticket, is(Optional.of(new Ticket("12345", 1))));
     }
 
     @Test
@@ -38,24 +38,24 @@ public class ParkingLotTest {
     public void shouldNotParkingWhenParkingLotIsFull() {
         spaceNum = 0;
         parkingLot.setSpaceNum(spaceNum);
-        Ticket ticket = parkingLot.parking(new Car("12345"));
-        assertThat(ticket, is(nullValue()));
+        Optional<Ticket> ticket = parkingLot.parking(new Car("12345"));
+        assertEquals(Optional.fromNullable(null), ticket);
     }
 
     @Test
     public void shouldUnParking() {
         Car car = new Car("12345");
         parkingLot.parking(car);
-        Car resultCar = parkingLot.unParking(new Ticket(car.getCarNum(),1));
-        assertThat(resultCar, is(car));
+        Optional<Car> resultCar = parkingLot.unParking(Optional.of(new Ticket(car.getCarNum(), 1)));
+        assertThat(resultCar, is(Optional.of(car)));
     }
 
     @Test
     public void shouldUnParkingAndUnParking() {
         Car car1 = new Car("12345");
         Car car2 = new Car("12346");
-        Ticket ticket1 = parkingLot.parking(car1);
-        Ticket ticket2 = parkingLot.parking(car2);
+        Optional<Ticket> ticket1 = parkingLot.parking(car1);
+        Optional<Ticket> ticket2 = parkingLot.parking(car2);
         parkingLot.unParking(ticket1);
         parkingLot.unParking(ticket2);
         assertThat(parkingLot.getSpaceNum(), is(spaceNum));
@@ -64,7 +64,7 @@ public class ParkingLotTest {
     @Test
     public void shouldNotUnParkingWhenCarIsNotInParkingLot() {
         Car car = new Car("12345");
-        Car resultCar = parkingLot.unParking(new Ticket(car.getCarNum(), 1));
-        assertThat(resultCar, is(nullValue()));
+        Optional<Car> resultCar = parkingLot.unParking(Optional.of(new Ticket(car.getCarNum(), 1)));
+        assertEquals(Optional.fromNullable(null), resultCar);
     }
 }

@@ -1,3 +1,5 @@
+import com.google.common.base.Optional;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,18 +13,20 @@ public class ParkingLot {
         this.parkingLotNum = parkingLotNum;
     }
 
+
+
     public int getParkingLotNum() {
         return parkingLotNum;
     }
 
-    public Ticket parking(Car car) {
+    public Optional<Ticket> parking(Car car) {
         if(spaceNum >0) {
             spaceNum--;
             carList.add(car);
-            return new Ticket(car.getCarNum(),parkingLotNum);
+            return Optional.of(new Ticket(car.getCarNum(),parkingLotNum));
         }
         else
-            return null;
+            return Optional.absent();
     }
 
     public int getSpaceNum() {
@@ -33,14 +37,14 @@ public class ParkingLot {
         this.spaceNum = spaceNum;
     }
 
-    public Car unParking(Ticket ticket) {
+    public Optional<Car> unParking(Optional<Ticket> ticket) {
         for(Car car : carList) {
-            if(ticket.getCarNum().equals(car.getCarNum())) {
+            if(ticket.get().getCarNum().equals(car.getCarNum())) {
                 spaceNum++;
                 carList.remove(carList.indexOf(car));
-                return new Car(ticket.getCarNum());
+                return Optional.of(new Car(ticket.get().getCarNum()));
             }
         }
-        return null;
+        return Optional.absent();
     }
 }

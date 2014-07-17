@@ -6,9 +6,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library" scope="TEST">
+    <orderEntry type="module-library" exported="" scope="TEST">
       <library name="JUnit4">
         <CLASSES>
           <root url="jar://$APPLICATION_HOME_DIR$/lib/junit-4.11.jar!/" />
@@ -19,6 +19,9 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="com.google.guava:guava-base:r03" level="project" />
+    <orderEntry type="library" name="com.google.guava:guava-collections:r03" level="project" />
+    <orderEntry type="library" name="guava-13.0.1" level="project" />
   </component>
 </module>
 
