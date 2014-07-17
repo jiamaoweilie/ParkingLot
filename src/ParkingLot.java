@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingLot {
+    private int totalNum;
     private int spaceNum;
     private int parkingLotNum;
     private List<Car> carList = new ArrayList<Car>();
 
-    public ParkingLot(int parkingLotNum, int spaceNum) {
-        this.spaceNum = spaceNum;
+    public ParkingLot(int parkingLotNum, int totalNum) {
+        this.totalNum = totalNum;
         this.parkingLotNum = parkingLotNum;
+        this.spaceNum = totalNum;
     }
 
-
+    public int getTotalNum() {
+//        System.out.println("++++"+totalNum);
+        return totalNum;
+    }
 
     public int getParkingLotNum() {
         return parkingLotNum;
@@ -30,6 +35,7 @@ public class ParkingLot {
     }
 
     public int getSpaceNum() {
+//        System.out.println("----"+spaceNum);
         return spaceNum;
     }
 
