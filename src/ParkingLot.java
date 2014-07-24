@@ -16,7 +16,6 @@ public class ParkingLot {
     }
 
     public int getTotalNum() {
-//        System.out.println("++++"+totalNum);
         return totalNum;
     }
 
@@ -35,7 +34,6 @@ public class ParkingLot {
     }
 
     public int getSpaceNum() {
-//        System.out.println("----"+spaceNum);
         return spaceNum;
     }
 
