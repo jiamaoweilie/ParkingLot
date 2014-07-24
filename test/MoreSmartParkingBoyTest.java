@@ -9,7 +9,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class MoreSmartParkingBoyTest {
-    ParkingBoy parkingBoy;
+    ParkingService parkingBoy;
     ParkingLot lot1;
     ParkingLot lot2;
     List<ParkingLot> parkingLotList;

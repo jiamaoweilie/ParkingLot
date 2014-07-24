@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class ParkingBoyTest {
-    ParkingBoy parkingBoy;
+    ParkingService parkingBoy;
     ParkingLot lot1;
     ParkingLot lot2;
 

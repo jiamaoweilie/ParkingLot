@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 
 public class SmartParkingBoyTest {
 
-    ParkingBoy parkingBoy;
+    ParkingService parkingBoy;
     ParkingLot lot1;
     ParkingLot lot2;
     Car car;
